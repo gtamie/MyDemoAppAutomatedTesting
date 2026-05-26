@@ -1,5 +1,6 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class MenuPage:
 
@@ -12,8 +13,8 @@ class MenuPage:
         self.wait = WebDriverWait(driver, 10)
 
     def open_menu(self):
-        self.driver.find_element(*self.MENU_ICON).click()
+        self.wait.until(EC.element_to_be_clickable(*self.MENU_ICON)).click()
 
     def go_to_login(self):
         self.open_menu()
-        self.driver.find_element(*self.LOGIN_ITEM).click()
+        self.wait.until(EC.element_to_be_clickable(*self.LOGIN_ITEM)).click()

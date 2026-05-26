@@ -19,13 +19,16 @@ class LoginPage:
         self.wait = WebDriverWait(self.driver, 10)
 
     def fill_username(self, username):
-        self.driver.find_element(*self.USERNAME_FIELD).send_keys(username)
+        self.wait.until(
+            EC.visibility_of_element_located(self.USERNAME_FIELD)).send_keys(username)
 
     def fill_password(self, password):
-        self.driver.find_element(*self.PASSWORD_FIELD).send_keys(password)
+        self.wait.until(
+            EC.visibility_of_element_located(self.PASSWORD_FIELD)).send_keys(password)
 
     def tap_login_button(self):
-        self.driver.find_element(*self.LOGIN_BUTTON).click()
+        self.wait.until(
+            EC.element_to_be_clickable(self.LOGIN_BUTTON)).click()
 
     def login(self, username=None, password=None):
         if username:
